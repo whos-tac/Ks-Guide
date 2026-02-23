@@ -3,8 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>GPO Fishing Macro – Setup Guide</title>
-  <link rel="icon" href="favicon.ico" />
+  <title>K's Macro – Setup Guide</title>
+  <link rel="icon" href="icon.svg" type="image/svg+xml" />
+  <link rel="icon" href="img/32x32.png" type="image/png" sizes="32x32" />
+  <link rel="shortcut icon" href="favicon.ico" />
   <link rel="stylesheet" href="css/style.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -14,25 +16,22 @@
 
   <div class="app-shell">
 
-    <!-- ─── SIDEBAR ─── -->
-    <aside class="sidebar">
-      <div class="sidebar-brand">
-        <img src="img/32x32.png" alt="Logo" class="brand-img" />
-        <span>
-          <span class="brand-name">GPO Fishing Macro</span>
-          <span class="brand-ver">Setup Guide</span>
-        </span>
-      </div>
-
-      <nav class="sidebar-nav" id="sidebarNav"></nav>
-
-      <div class="sidebar-footer">
-        <div class="status-pill">
+    <!-- ─── TOP BAR ─── -->
+    <header class="topbar">
+      <div class="topbar-row">
+        <div class="topbar-brand">
+          <img src="icon.svg" alt="K's Macro" class="brand-img" />
+          <span class="brand-name">K's Macro</span>
+          <span class="brand-ver">Guide</span>
+        </div>
+        <nav class="topbar-nav" id="topbarNav"></nav>
+        <div class="topbar-pill">
           <span class="status-dot"></span>
           Proof of Concept
         </div>
       </div>
-    </aside>
+      <div class="topbar-sub" id="subNav"></div>
+    </header>
 
     <!-- ─── MAIN ─── -->
     <main class="main" id="mainContent">
@@ -40,38 +39,38 @@
       <!-- HOME -->
       <div class="view active" id="view-home">
         <div class="page-header">
-          <h1>GPO Fishing Macro Guide</h1>
-          <p>Select a feature from the sidebar to view the step-by-step setup instructions.</p>
+          <h1>K's Macro — Setup Guide</h1>
+          <p>Select a feature from the navigation bar to view the step-by-step setup instructions.</p>
         </div>
         <div class="welcome-grid">
           <div class="welcome-card" data-target="setup">
-            <div class="welcome-card-icon">🎣</div>
+            <div class="welcome-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="20" x2="20" y2="4"/><circle cx="20" cy="4" r="1.3" fill="currentColor" stroke="none"/><path d="M20 4 C22 9,22 14,19 17" stroke-dasharray="2 1.5"/><path d="M19 17 C17 19,16 21,17.5 22 C19 23,21 21,20 19"/></svg></div>
             <div class="welcome-card-label">Setup</div>
             <div class="welcome-card-desc">Initial macro configuration &amp; hotkey assignment.</div>
           </div>
           <div class="welcome-card" data-target="auto-craft">
-            <div class="welcome-card-icon">⚒️</div>
+            <div class="welcome-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M15 4l5 5-9.5 9.5-5-5z"/><line x1="2" y1="22" x2="8.5" y2="15.5"/><path d="M15 4 C15 4,17 2,19 3" stroke-width="2.5"/></svg></div>
             <div class="welcome-card-label">Auto Craft</div>
             <div class="welcome-card-desc">Automate crafting with Blacksmith Sen.</div>
           </div>
           <div class="welcome-card" data-target="auto-buy">
-            <div class="welcome-card-icon">🛒</div>
+            <div class="welcome-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg></div>
             <div class="welcome-card-label">Auto Buy</div>
             <div class="welcome-card-desc">Automatically restock bait from the shop.</div>
           </div>
           <div class="welcome-card" data-target="auto-store">
-            <div class="welcome-card-icon">📦</div>
+            <div class="welcome-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg></div>
             <div class="welcome-card-label">Auto Store</div>
             <div class="welcome-card-desc">Send fish to storage without interrupting your session.</div>
           </div>
           <div class="welcome-card" data-target="auto-select">
-            <div class="welcome-card-icon">🎯</div>
+            <div class="welcome-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/><line x1="12" y1="2" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="22"/><line x1="2" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="22" y2="12"/></svg></div>
             <div class="welcome-card-label">Auto Select</div>
             <div class="welcome-card-desc">Automatically pick the best bait from your inventory.</div>
           </div>
         </div>
         <div class="notice-box">
-          <span class="notice-icon">⚠️</span>
+          <span class="notice-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></span>
           Screenshots in this guide are from an earlier version of the macro — the interface may look slightly different.
         </div>
       </div>

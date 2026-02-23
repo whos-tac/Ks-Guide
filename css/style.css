@@ -182,6 +182,8 @@ body {
 }
 
 .nav-btn svg {
+  width: 16px;
+  height: 16px;
   flex-shrink: 0;
   opacity: 0.7;
 }
@@ -1249,108 +1251,195 @@ body {
   overflow: auto;
 }
 
-/* Widen sidebar to match --sidebar-w set in :root */
+/* ── App shell — vertical column layout ─────────────────────────── */
 .app-shell {
-  display: grid;
-  grid-template-columns: var(--sidebar-w) 1fr;
+  display: flex;
+  flex-direction: column;
   height: 100vh;
   overflow: hidden;
 }
 
-/* ── Sidebar brand ──────────────────────────────────────────────── */
-.brand-img {
-  width: 2rem;
-  height: 2rem;
-  border-radius: 6px;
+/* ── Top bar ────────────────────────────────────────────────────── */
+.topbar {
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
   flex-shrink: 0;
-  image-rendering: pixelated;
+  z-index: 10;
 }
 
-.sidebar-brand {
-  padding: 1.4rem 1.2rem 1.2rem;
-  gap: 0.75rem;
+.topbar-row {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  padding: 0 1.25rem;
+  height: 3.4rem;
+}
+
+.topbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-right: 1.5rem;
+  flex-shrink: 0;
+}
+
+.brand-img {
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 5px;
+  flex-shrink: 0;
+  background: var(--bg4);
+  padding: 2px;
 }
 
 .brand-name {
-  font-size: 0.875rem;
-}
-
-.brand-ver {
-  font-size: 0.7rem;
-  margin-top: 0.1rem;
-}
-
-/* ── Nav buttons — bigger tap targets ───────────────────────────── */
-.nav-btn {
-  padding: 0.6rem 0.75rem;
-  font-size: 0.825rem;
-  gap: 0.6rem;
-  border-radius: var(--radius);
-  margin-bottom: 2px;
-}
-
-/* ── Nav icon & chevron ─────────────────────────────────────────── */
-.nav-icon {
-  font-size: 1rem;
-  flex-shrink: 0;
-  line-height: 1;
-}
-
-.nav-label {
-  flex: 1;
-  min-width: 0;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text);
   white-space: nowrap;
 }
 
-.nav-chevron {
-  font-size: 0.9rem;
+.brand-ver {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
   color: var(--text3);
-  margin-left: auto;
+  margin-left: 0.4rem;
+  white-space: nowrap;
+}
+
+.topbar-nav {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  flex: 1;
+  min-width: 0;
+  overflow-x: auto;
+}
+
+.topbar-nav::-webkit-scrollbar {
+  height: 0;
+}
+
+.topbar-pill {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--text3);
+  padding: 0.35rem 0.65rem;
+  background: var(--bg3);
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  margin-left: 1rem;
   flex-shrink: 0;
-  transition: color 0.15s, transform 0.2s;
+  white-space: nowrap;
 }
 
-.nav-btn-expanded .nav-chevron {
-  color: var(--accent);
-  transform: rotate(90deg);
+/* ── Top nav buttons ────────────────────────────────────────────── */
+.topnav-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.45rem 0.75rem;
+  background: none;
+  border: none;
+  border-radius: var(--radius);
+  color: var(--text2);
+  font-family: var(--font-ui);
+  font-size: 0.8rem;
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s, color 0.15s;
 }
 
-/* ── Sidebar sub-items ──────────────────────────────────────────── */
-.nav-sub-list {
-  margin: 0 0 6px 1.2rem;
-  border-left: 2px solid var(--border);
-  overflow: hidden;
-  animation: subListIn 0.18s ease;
-}
-
-@keyframes subListIn {
-  from { opacity: 0; transform: translateY(-6px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-.nav-sub-btn {
-  padding: 0.45rem 0.75rem 0.45rem 0.65rem;
-  font-size: 0.78rem;
-  font-weight: 400;
-  color: var(--text3);
-  gap: 0.55rem;
-}
-
-.nav-sub-btn:hover {
+.topnav-btn:hover {
+  background: var(--bg3);
   color: var(--text);
 }
 
-.nav-sub-btn.active {
+.topnav-btn.active {
+  background: var(--accent-dim);
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.topnav-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.topnav-icon svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+.topnav-btn svg {
+  width: 1rem;
+  height: 1rem;
+  flex-shrink: 0;
+  opacity: 0.7;
+}
+
+.topnav-btn.active svg {
+  opacity: 1;
+}
+
+.topnav-label {
+  white-space: nowrap;
+}
+
+/* ── Sub-nav row (step pills) ───────────────────────────────────── */
+.topbar-sub {
+  display: none;
+  border-top: 1px solid var(--border);
+  padding: 0.5rem 1.25rem;
+  overflow-x: auto;
+  gap: 4px;
+}
+
+.topbar-sub::-webkit-scrollbar {
+  height: 0;
+}
+
+.topbar-sub.visible {
+  display: flex;
+}
+
+.subnav-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.65rem;
+  background: none;
+  border: none;
+  border-radius: 6px;
+  color: var(--text3);
+  font-family: var(--font-ui);
+  font-size: 0.75rem;
+  font-weight: 400;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s, color 0.15s;
+}
+
+.subnav-btn:hover {
+  background: var(--bg3);
+  color: var(--text);
+}
+
+.subnav-btn.active {
   background: var(--accent-dim);
   color: var(--accent);
   font-weight: 500;
 }
 
-.nav-sub-num {
+.subnav-num {
   font-family: var(--font-mono);
-  font-size: 0.65rem;
+  font-size: 0.6rem;
   font-weight: 600;
   color: var(--text3);
   background: var(--bg4);
@@ -1358,31 +1447,28 @@ body {
   border-radius: 4px;
   padding: 1px 5px;
   flex-shrink: 0;
-  min-width: 1.8rem;
+  min-width: 1.6rem;
   text-align: center;
   letter-spacing: 0.3px;
 }
 
-.nav-sub-btn.active .nav-sub-num {
+.subnav-btn.active .subnav-num {
   background: var(--accent-dim);
   border-color: var(--accent);
   color: var(--accent);
 }
 
-/* ── Sidebar footer ─────────────────────────────────────────────── */
-.sidebar-footer {
-  padding: 1rem;
-}
-
-.status-pill {
-  font-size: 0.72rem;
-  padding: 0.45rem 0.75rem;
-}
-
 /* ── Main content area ──────────────────────────────────────────── */
+.main {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
 .view {
   padding: 2.5rem 3rem 4rem;
   max-width: 1100px;
+  margin: 0 auto;
 }
 
 /* ── Page header ────────────────────────────────────────────────── */
@@ -1404,7 +1490,7 @@ body {
   line-height: 1.6;
 }
 
-/* ── Step badge on slides ───────────────────────────────────────── */
+/* ── Step badge on slides ───────────────────���───────────────────── */
 .slide-step-badge {
   position: absolute;
   top: 0.85rem;
@@ -1491,6 +1577,11 @@ body {
   opacity: 0.35;
 }
 
+.img-fallback-icon svg {
+  width: 3rem;
+  height: 3rem;
+}
+
 .img-fallback-label {
   font-family: var(--font-mono);
   font-size: 0.72rem;
@@ -1533,6 +1624,12 @@ body {
   font-size: 2.2rem;
   margin-bottom: 0.85rem;
   line-height: 1;
+  color: var(--accent);
+}
+
+.welcome-card-icon svg {
+  width: 2.2rem;
+  height: 2.2rem;
 }
 
 .welcome-card-label {
@@ -1569,33 +1666,49 @@ body {
   margin-top: 0.1rem;
 }
 
-/* ── Responsive sidebar collapse (narrow screens) ───────────────── */
+.notice-icon svg {
+  width: 1.1rem;
+  height: 1.1rem;
+}
+
+/* ── Responsive (narrow screens) ────────────────────────────────── */
 @media (max-width: 800px) {
-  .app-shell {
-    grid-template-columns: 64px 1fr;
+  .topbar-row {
+    padding: 0 0.75rem;
+    height: 3rem;
   }
 
-  .brand-name,
-  .brand-ver,
-  .nav-label,
-  .nav-chevron,
-  .nav-sub-list,
-  .sidebar-footer .status-pill span:not(.status-dot) {
+  .brand-name {
     display: none;
   }
 
-  .nav-btn {
-    justify-content: center;
-    padding: 0.75rem;
+  .brand-ver {
+    display: none;
   }
 
-  .nav-icon {
-    font-size: 1.3rem;
+  .topbar-pill {
+    display: none;
   }
 
-  .sidebar-brand {
-    justify-content: center;
-    padding: 1rem 0.5rem;
+  .topnav-label {
+    display: none;
+  }
+
+  .topnav-btn {
+    padding: 0.5rem;
+  }
+
+  .topnav-icon svg {
+    width: 1.2rem;
+    height: 1.2rem;
+  }
+
+  .topbar-sub {
+    padding: 0.4rem 0.75rem;
+  }
+
+  .subnav-label {
+    display: none;
   }
 
   .view {

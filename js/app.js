@@ -3,167 +3,120 @@
    Vanilla JS, no dependencies, no build step.
 ───────────────────────────────────────────── */
 
+// ── SVG icon strings ──────────────────────────────────────────────────────────
+const ICONS = {
+  home: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9.5L12 3l9 6.5V20a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1z"/><polyline points="9 21 9 12 15 12 15 21"/></svg>`,
+  setup: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="20" x2="20" y2="4"/><circle cx="20" cy="4" r="1.3" fill="currentColor" stroke="none"/><path d="M20 4 C22 9,22 14,19 17" stroke-dasharray="2 1.5"/><path d="M19 17 C17 19,16 21,17.5 22 C19 23,21 21,20 19"/></svg>`,
+  'auto-craft': `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M15 4l5 5-9.5 9.5-5-5z"/><line x1="2" y1="22" x2="8.5" y2="15.5"/><path d="M15 4 C15 4,17 2,19 3" stroke-width="2.5"/></svg>`,
+  'auto-buy': `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>`,
+  'auto-store': `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>`,
+  'auto-select': `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/><line x1="12" y1="2" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="22"/><line x1="2" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="22" y2="12"/></svg>`,
+  step: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>`,
+};
+
 // ── Section definitions ──────────────────────────────────────────────────────
 const SECTIONS = [
   {
     id: 'setup',
     label: 'Setup',
-    icon: '🎣',
-    slides: [
-      'Step 1 – Launch & Configure',
-      'Step 2 – Assign Hotkey Slots',
-    ],
+    slides: ['Step 1 – Launch & Configure', 'Step 2 – Assign Hotkey Slots'],
   },
   {
     id: 'auto-craft',
     label: 'Auto Craft',
-    icon: '⚒️',
     slides: [
-      'Position Setup',
-      'Configure Left Dialog',
-      'Configure Middle Dialog',
-      'Configure Add Ingredient',
-      'Configure Top Recipe Slot',
-      'Configure Craft Button',
-      'Configure Craft Selected',
-      'Configure Menu Close',
-      'Add and Configure Recipes',
-      'Add Recipe',
+      'Position Setup', 'Configure Left Dialog', 'Configure Middle Dialog',
+      'Configure Add Ingredient', 'Configure Top Recipe Slot', 'Configure Craft Button',
+      'Configure Craft Selected', 'Configure Menu Close', 'Add and Configure Recipes', 'Add Recipe',
     ],
   },
   {
     id: 'auto-buy',
     label: 'Auto Buy',
-    icon: '🛒',
-    slides: [
-      'Position Setup',
-      'Configure Left Dialog',
-      'Configure Middle Dialog',
-      'Configure Right Dialog',
-    ],
+    slides: ['Position Setup', 'Configure Left Dialog', 'Configure Middle Dialog', 'Configure Right Dialog'],
   },
   {
     id: 'auto-store',
     label: 'Auto Store',
-    icon: '📦',
     slides: ['Set up the store location'],
   },
   {
     id: 'auto-select',
     label: 'Auto Select',
-    icon: '🎯',
     slides: ['Enable Auto Select'],
   },
 ];
 
 // ── State ─────────────────────────────────────────────────────────────────────
 let activeView = 'home';
-let expandedSection = null;               // id of the open section, or null
-const slideIndex = {};                    // { sectionId: currentIndex }
-
+const slideIndex = {};
 SECTIONS.forEach(s => { slideIndex[s.id] = 0; });
 
 // ── DOM refs ──────────────────────────────────────────────────────────────────
-const nav = document.getElementById('sidebarNav');
-const main = document.getElementById('mainContent');
+const topbarNav = document.getElementById('topbarNav');
+const subNav    = document.getElementById('subNav');
+const main      = document.getElementById('mainContent');
 
-// ── Sidebar builder ───────────────────────────────────────────────────────────
-function buildSidebar() {
-  nav.innerHTML = '';
+// ── Top bar builder ───────────────────────────────────────────────────────────
+function buildTopbar() {
+  topbarNav.innerHTML = '';
 
-  // Home button
-  const homeBtn = makeNavBtn('home', '🏠', 'Home', false, 0);
+  // Home
+  const homeBtn = makeNavBtn('home', 'Home');
   homeBtn.classList.toggle('active', activeView === 'home');
   homeBtn.addEventListener('click', () => navigateTo('home'));
-  nav.appendChild(homeBtn);
+  topbarNav.appendChild(homeBtn);
 
-  // Section buttons + sub-items
+  // Sections
   SECTIONS.forEach(section => {
-    const isOpen = expandedSection === section.id;
-    const isActive = activeView === section.id;
-
-    const btn = makeNavBtn(section.id, section.icon, section.label, true, 0);
-    btn.classList.toggle('active', isActive && !isOpen);
-    btn.classList.toggle('nav-btn-expanded', isOpen);
-
-    // Chevron
-    const chevron = document.createElement('span');
-    chevron.className = 'nav-chevron';
-    chevron.textContent = isOpen ? '▾' : '›';
-    btn.appendChild(chevron);
-
-    btn.addEventListener('click', () => toggleSection(section.id));
-    nav.appendChild(btn);
-
-    // Sub-items (slide titles)
-    if (isOpen) {
-      const subList = document.createElement('div');
-      subList.className = 'nav-sub-list';
-
-      // "Overview" sub-item → shows the section view at slide 0
-      section.slides.forEach((title, idx) => {
-        const sub = makeNavBtn(section.id + '-' + idx, null, title, false, 1);
-        sub.classList.toggle('active', activeView === section.id && slideIndex[section.id] === idx);
-        sub.addEventListener('click', () => {
-          goToSlide(section.id, idx);
-          navigateTo(section.id);
-        });
-        subList.appendChild(sub);
-      });
-
-      nav.appendChild(subList);
-    }
+    const btn = makeNavBtn(section.id, section.label);
+    btn.classList.toggle('active', activeView === section.id);
+    btn.addEventListener('click', () => navigateTo(section.id));
+    topbarNav.appendChild(btn);
   });
 }
 
-function makeNavBtn(id, icon, label, hasChevron, depth) {
+function makeNavBtn(id, label) {
   const btn = document.createElement('button');
-  btn.className = 'nav-btn' + (depth > 0 ? ' nav-sub-btn' : '');
+  btn.className = 'topnav-btn';
   btn.dataset.id = id;
-
-  if (icon) {
-    const ico = document.createElement('span');
-    ico.className = 'nav-icon';
-    ico.textContent = icon;
-    btn.appendChild(ico);
-  } else {
-    // step number badge for sub-items
-    const num = document.createElement('span');
-    num.className = 'nav-sub-num';
-    // extract index from id like "setup-0"
-    const parts = id.split('-');
-    const n = parseInt(parts[parts.length - 1], 10);
-    num.textContent = String(n + 1).padStart(2, '0');
-    btn.appendChild(num);
-  }
-
-  const txt = document.createElement('span');
-  txt.className = 'nav-label';
-  txt.textContent = label;
-  btn.appendChild(txt);
-
+  btn.innerHTML = `<span class="topnav-icon">${ICONS[id] || ''}</span><span class="topnav-label">${label}</span>`;
   return btn;
 }
 
+// ── Sub-nav builder (step pills shown when a section is active) ───────────────
+function buildSubnav() {
+  subNav.innerHTML = '';
+  if (activeView === 'home') {
+    subNav.classList.remove('visible');
+    return;
+  }
+  const section = SECTIONS.find(s => s.id === activeView);
+  if (!section) { subNav.classList.remove('visible'); return; }
+
+  subNav.classList.add('visible');
+
+  section.slides.forEach((title, idx) => {
+    const btn = document.createElement('button');
+    btn.className = 'subnav-btn';
+    btn.classList.toggle('active', slideIndex[section.id] === idx);
+    btn.innerHTML = `<span class="subnav-num">${String(idx + 1).padStart(2, '0')}</span><span class="subnav-label">${title}</span>`;
+    btn.addEventListener('click', () => {
+      goToSlide(section.id, idx);
+    });
+    subNav.appendChild(btn);
+  });
+}
+
+
 // ── Navigation ────────────────────────────────────────────────────────────────
 function navigateTo(id) {
-  // deactivate all views
   main.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
   const target = document.getElementById('view-' + id);
   if (target) target.classList.add('active');
   activeView = id;
-  buildSidebar();
-}
-
-function toggleSection(id) {
-  if (expandedSection === id) {
-    expandedSection = null;
-  } else {
-    expandedSection = id;
-    navigateTo(id);
-    return; // navigateTo calls buildSidebar
-  }
-  buildSidebar();
+  buildTopbar();
+  buildSubnav();
 }
 
 // ── Slideshow logic ───────────────────────────────────────────────────────────
@@ -175,15 +128,13 @@ function goToSlide(sectionId, index) {
   const dots   = wrap.querySelectorAll('.slide-dot');
   const total  = slides.length;
 
-  // clamp
   index = ((index % total) + total) % total;
   slideIndex[sectionId] = index;
 
   slides.forEach((s, i) => s.classList.toggle('visible', i === index));
   dots.forEach((d, i)   => d.classList.toggle('active',  i === index));
 
-  // keep sidebar sub-item highlight in sync when already on this view
-  if (activeView === sectionId) buildSidebar();
+  if (activeView === sectionId) buildSubnav();
 }
 
 function bindSlideshow(sectionId) {
@@ -192,21 +143,18 @@ function bindSlideshow(sectionId) {
 
   wrap.querySelector('.slide-arrow.prev').addEventListener('click', () =>
     goToSlide(sectionId, slideIndex[sectionId] - 1));
-
   wrap.querySelector('.slide-arrow.next').addEventListener('click', () =>
     goToSlide(sectionId, slideIndex[sectionId] + 1));
-
   wrap.querySelectorAll('.slide-dot').forEach(dot => {
     dot.addEventListener('click', () =>
       goToSlide(sectionId, parseInt(dot.dataset.dot, 10)));
   });
 
-  // keyboard arrows when viewport is hovered / focused
+  wrap.querySelector('.slideshow-viewport').setAttribute('tabindex', '0');
   wrap.addEventListener('keydown', e => {
     if (e.key === 'ArrowLeft')  goToSlide(sectionId, slideIndex[sectionId] - 1);
     if (e.key === 'ArrowRight') goToSlide(sectionId, slideIndex[sectionId] + 1);
   });
-  wrap.querySelector('.slideshow-viewport').setAttribute('tabindex', '0');
 }
 
 // ── Image fallback ────────────────────────────────────────────────────────────
@@ -216,7 +164,7 @@ window.imgFallback = function imgFallback(img, title) {
   const fb = document.createElement('div');
   fb.className = 'img-fallback';
   fb.innerHTML = `
-    <div class="img-fallback-icon">🖼️</div>
+    <div class="img-fallback-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div>
     <div class="img-fallback-label">Image not available</div>
     ${title ? `<div class="img-fallback-title">${title}</div>` : ''}
   `;
@@ -225,23 +173,18 @@ window.imgFallback = function imgFallback(img, title) {
 
 // ── Welcome card clicks ───────────────────────────────────────────────────────
 document.querySelectorAll('.welcome-card[data-target]').forEach(card => {
-  card.addEventListener('click', () => {
-    const id = card.dataset.target;
-    expandedSection = id;
-    navigateTo(id);
-  });
+  card.addEventListener('click', () => navigateTo(card.dataset.target));
 });
 
-// ── Global keyboard nav (arrow keys) ─────────────────────────────────────────
+// ── Global keyboard nav ───────────────────────────────────────────────────────
 document.addEventListener('keydown', e => {
   if (activeView === 'home') return;
-  const section = SECTIONS.find(s => s.id === activeView);
-  if (!section) return;
   if (e.key === 'ArrowLeft')  goToSlide(activeView, slideIndex[activeView] - 1);
   if (e.key === 'ArrowRight') goToSlide(activeView, slideIndex[activeView] + 1);
 });
 
 // ── Init ──────────────────────────────────────────────────────────────────────
-buildSidebar();
+buildTopbar();
+buildSubnav();
 SECTIONS.forEach(s => bindSlideshow(s.id));
 

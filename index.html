@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GPO Fishing Macro – Setup Guide</title>
+  <link rel="icon" href="favicon.ico" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <div class="app-shell">
+
+    <!-- ─── SIDEBAR ─── -->
+    <aside class="sidebar">
+      <div class="sidebar-brand">
+        <img src="img/32x32.png" alt="Logo" class="brand-img" />
+        <span>
+          <span class="brand-name">GPO Fishing Macro</span>
+          <span class="brand-ver">Setup Guide</span>
+        </span>
+      </div>
+
+      <nav class="sidebar-nav" id="sidebarNav"></nav>
+
+      <div class="sidebar-footer">
+        <div class="status-pill">
+          <span class="status-dot"></span>
+          Proof of Concept
+        </div>
+      </div>
+    </aside>
+
+    <!-- ─── MAIN ─── -->
+    <main class="main" id="mainContent">
+
+      <!-- HOME -->
+      <div class="view active" id="view-home">
+        <div class="page-header">
+          <h1>GPO Fishing Macro Guide</h1>
+          <p>Select a feature from the sidebar to view the step-by-step setup instructions.</p>
+        </div>
+        <div class="welcome-grid">
+          <div class="welcome-card" data-target="setup">
+            <div class="welcome-card-icon">🎣</div>
+            <div class="welcome-card-label">Setup</div>
+            <div class="welcome-card-desc">Initial macro configuration &amp; hotkey assignment.</div>
+          </div>
+          <div class="welcome-card" data-target="auto-craft">
+            <div class="welcome-card-icon">⚒️</div>
+            <div class="welcome-card-label">Auto Craft</div>
+            <div class="welcome-card-desc">Automate crafting with Blacksmith Sen.</div>
+          </div>
+          <div class="welcome-card" data-target="auto-buy">
+            <div class="welcome-card-icon">🛒</div>
+            <div class="welcome-card-label">Auto Buy</div>
+            <div class="welcome-card-desc">Automatically restock bait from the shop.</div>
+          </div>
+          <div class="welcome-card" data-target="auto-store">
+            <div class="welcome-card-icon">📦</div>
+            <div class="welcome-card-label">Auto Store</div>
+            <div class="welcome-card-desc">Send fish to storage without interrupting your session.</div>
+          </div>
+          <div class="welcome-card" data-target="auto-select">
+            <div class="welcome-card-icon">🎯</div>
+            <div class="welcome-card-label">Auto Select</div>
+            <div class="welcome-card-desc">Automatically pick the best bait from your inventory.</div>
+          </div>
+        </div>
+        <div class="notice-box">
+          <span class="notice-icon">⚠️</span>
+          Screenshots in this guide are from an earlier version of the macro — the interface may look slightly different.
+        </div>
+      </div>
+
+      <!-- SETUP -->
+      <div class="view" id="view-setup">
+        <div class="page-header">
+          <h1>Setup</h1>
+          <p>Initial launch &amp; configuration — complete this before enabling any automation features.</p>
+        </div>
+        <div class="slideshow-wrap" id="ss-setup">
+          <div class="slideshow-viewport">
+            <div class="slide visible" data-index="0">
+              <img src="https://i.postimg.cc/SK3FDVrW/Water-Point.png" alt="Step 1" onerror="imgFallback(this,'Step 1 – Launch &amp; Configure')" />
+              <div class="slide-step-badge">01</div>
+              <div class="slide-overlay">
+                <div class="slide-overlay-title">Step 1 – Launch &amp; Configure</div>
+                <div class="slide-overlay-desc">Open the macro and set your water target point first in the Locations tab.</div>
+              </div>
+            </div>
+            <div class="slide" data-index="1">
+              <img src="https://i.postimg.cc/hvqFqjN2/Assign-Slots.png" alt="Step 2" onerror="imgFallback(this,'Step 2 – Assign Hotkey Slots')" />
+              <div class="slide-step-badge">02</div>
+              <div class="slide-overlay">
+                <div class="slide-overlay-title">Step 2 – Assign Hotkey Slots</div>
+                <div class="slide-overlay-desc">Make sure your fishing rod is in the correct inventory slot, and your alternative slot too.</div>
+              </div>
+            </div>
+            <button class="slide-arrow prev" aria-label="Previous">&#8249;</button>
+            <button class="slide-arrow next" aria-label="Next">&#8250;</button>
+          </div>
+          <div class="slide-dots">
+            <span class="slide-dot active" data-dot="0"></span>
+            <span class="slide-dot" data-dot="1"></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- AUTO CRAFT -->
+      <div class="view" id="view-auto-craft">
+        <div class="page-header">
+          <h1>Auto Craft</h1>
+          <p>Position near Blacksmith Sen and configure every crafting interface point in the Locations tab.</p>
+        </div>
+        <div class="slideshow-wrap" id="ss-auto-craft">
+          <div class="slideshow-viewport">
+            <div class="slide visible" data-index="0">
+              <img src="https://i.postimg.cc/QtYB62PL/Auto-Craft-Position.png" alt="Position Setup" onerror="imgFallback(this,'Position Setup')" />
+              <div class="slide-step-badge">01</div>
+              <div class="slide-overlay">
+                <div class="slide-overlay-title">Position Setup</div>
+                <div class="slide-overlay-desc">Position where the interact with Blacksmith Sen is available and you have a clear sight of the water.</div>
+              </div>
+            </div>
+            <div class="slide" data-index="1">
+              <img src="https://i.postimg.cc/LXj9Prpq/Auto-Craft-Left-DIalog.png" alt="Configure Left Dialog" onerror="imgFallback(this,'Configure Left Dialog')" />
+              <div class="slide-step-badge">02</div>
+              <div class="slide-overlay">
+                <div class="slide-overlay-title">Configure Left Dialog</div>
+                <div class="slide-overlay-desc">Go to Locations → Crafting Interface Points and configure.</div>
+              </div>
+            </div>
+            <div class="slide" data-index="2">
+              <img src="https://i.postimg.cc/GtZxf8Nr/Middle-Dialog-Option.png" alt="Configure Middle Dialog" onerror="imgFallback(this,'Configure Middle Dialog')" />
+              <div class="slide-step-badge">03</div>
+              <div class="slide-overlay">
+                <div class="slide-overlay-title">Configure Middle Dialog</div>
+                <div class="slide-overlay-desc">Go to Locations → Crafting Interface Points and configure.</div>
+              </div>
+            </div>
+            <div class="slide" data-index="3">
+              <img src="https://i.postimg.cc/qvHGXKyz/Add-Ingredient.png" alt="Configure Add Ingredient" onerror="imgFallback(this,'Configure Add Ingredient')" />
+              <div class="slide-step-badge">04</div>
+              <div class="slide-overlay">
+                <div class="slide-overlay-title">Configure Add Ingredient</div>
+                <div class="slide-overlay-desc">Go to Locations → Crafting Interface Points and configure.</div>
+              </div>
+            </div>
+            <div class="slide" data-index="4">
+              <img src="https://i.postimg.cc/ZqTFXhf4/Top-Recipe-Slot.png" alt="Configure Top Recipe Slot" onerror="imgFallback(this,'Configure Top Recipe Slot')" />
+              <div class="slide-step-badge">05</div>
+              <div class="slide-overlay">
+                <div class="slide-overlay-title">Configure Top Recipe Slot</div>
+                <div class="slide-overlay-desc">Go to Locations → Crafting Interface Points and configure.</div>
+              </div>
+            </div>
+            <div class="slide" data-index="5">
+              <img src="https://i.postimg.cc/wB0cpbZd/Click-Craft-Confirm.png" alt="Configure Craft Button" onerror="imgFallback(this,'Configure Craft Button')" />
+              <div class="slide-step-badge">06</div>
+              <div class="slide-overlay">
+                <div class="slide-overlay-title">Configure Craft Button</div>
+                <div class="slide-overlay-desc">Go to Locations → Crafting Interface Points and configure.</div>
+              </div>
+            </div>
+            <div class="slide" data-index="6">
+              <img src="https://i.postimg.cc/MZ9X4fDD/Screenshot-2026-02-14-214908.png" alt="Configure Craft Selected" onerror="imgFallback(this,'Configure Craft Selected')" />
+              <div class="slide-step-badge">07</div>
+              <div class="slide-overlay">
+                <div class="slide-overlay-title">Configure Craft Selected</div>
+                <div class="slide-overlay-desc">Go to Locations → Crafting Interface Points and configure.</div>
+              </div>
+            </div>
+            <div class="slide" data-index="7">
+              <img src="https://i.postimg.cc/k4GNXvPb/Menu-Close.png" alt="Configure Menu Close" onerror="imgFallback(this,'Configure Menu Close')" />
+              <div class="slide-step-badge">08</div>
+              <div class="slide-overlay">
+                <div class="slide-overlay-title">Configure Menu Close</div>
+                <div class="slide-overlay-desc">Go to Locations → Crafting Interface Points and configure.</div>
+              </div>
+            </div>
+            <div class="slide" data-index="8">
+              <img src="https://i.postimg.cc/Xqyw9NJM/Add-and-Configure-Recipes.png" alt="Add and Configure Recipes" onerror="imgFallback(this,'Add and Configure Recipes')" />
+              <div class="slide-step-badge">09</div>
+              <div class="slide-overlay">
+                <div class="slide-overlay-title">Add and Configure Recipes</div>
+                <div class="slide-overlay-desc">Go to Locations and click Add Recipe, then configure the recipe location.</div>
+              </div>
+            </div>
+            <div class="slide" data-index="9">
+              <img src="https://i.postimg.cc/MGK3VRJ1/Add.png" alt="Add Recipe" onerror="imgFallback(this,'Add Recipe')" />
+              <div class="slide-step-badge">10</div>
+              <div class="slide-overlay">
+                <div class="slide-overlay-title">Add Recipe</div>
+                <div class="slide-overlay-desc">Confirm the recipe has been added to the list.</div>
+              </div>
+            </div>
+            <button class="slide-arrow prev" aria-label="Previous">&#8249;</button>
+            <button class="slide-arrow next" aria-label="Next">&#8250;</button>
+          </div>
+          <div class="slide-dots">
+            <span class="slide-dot active" data-dot="0"></span>
+            <span class="slide-dot" data-dot="1"></span>
+            <span class="slide-dot" data-dot="2"></span>
+            <span class="slide-dot" data-dot="3"></span>
+            <span class="slide-dot" data-dot="4"></span>
+            <span class="slide-dot" data-dot="5"></span>
+            <span class="slide-dot" data-dot="6"></span>
+            <span class="slide-dot" data-dot="7"></span>
+            <span class="slide-dot" data-dot="8"></span>
+            <span class="slide-dot" data-dot="9"></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- AUTO BUY -->
+      <div class="view" id="view-auto-buy">
+        <div class="page-header">
+          <h1>Auto Buy</h1>
+          <p>Position near the bait shop and configure the purchase dialog points in the Locations tab.</p>
+        </div>
+        <div class="slideshow-wrap" id="ss-auto-buy">
+          <div class="slideshow-viewport">
+            <div class="slide visible" data-index="0">
+              <img src="https://i.postimg.cc/YqDzZP5R/Position.png" alt="Position Setup" onerror="imgFallback(this,'Position Setup')" />
+              <div class="slide-step-badge">01</div>
+              <div class="slide-overlay">
+                <div class="slide-overlay-title">Position Setup</div>
+                <div class="slide-overlay-desc">Position where Common Fish Bait Purchase interaction is available.</div>
+              </div>
+            </div>
+            <div class="slide" data-index="1">
+              <img src="https://i.postimg.cc/PrvjvgQP/Left-Dialog-Bait.png" alt="Configure Left Dialog" onerror="imgFallback(this,'Configure Left Dialog')" />
+              <div class="slide-step-badge">02</div>
+              <div class="slide-overlay">
+                <div class="slide-overlay-title">Configure Left Dialog</div>
+                <div class="slide-overlay-desc">Go to Locations → Bait Shop Interaction Points and configure.</div>
+              </div>
+            </div>
+            <div class="slide" data-index="2">
+              <img src="https://i.postimg.cc/NjLp0t6S/Middle-Dialog-Bait.png" alt="Configure Middle Dialog" onerror="imgFallback(this,'Configure Middle Dialog')" />
+              <div class="slide-step-badge">03</div>
+              <div class="slide-overlay">
+                <div class="slide-overlay-title">Configure Middle Dialog</div>
+                <div class="slide-overlay-desc">Go to Locations → Bait Shop Interaction Points and configure.</div>
+              </div>
+            </div>
+            <div class="slide" data-index="3">
+              <img src="https://i.postimg.cc/W1tX4VGY/Right-Dialog-Bait.png" alt="Configure Right Dialog" onerror="imgFallback(this,'Configure Right Dialog')" />
+              <div class="slide-step-badge">04</div>
+              <div class="slide-overlay">
+                <div class="slide-overlay-title">Configure Right Dialog</div>
+                <div class="slide-overlay-desc">Go to Locations → Bait Shop Interaction Points and configure.</div>
+              </div>
+            </div>
+            <button class="slide-arrow prev" aria-label="Previous">&#8249;</button>
+            <button class="slide-arrow next" aria-label="Next">&#8250;</button>
+          </div>
+          <div class="slide-dots">
+            <span class="slide-dot active" data-dot="0"></span>
+            <span class="slide-dot" data-dot="1"></span>
+            <span class="slide-dot" data-dot="2"></span>
+            <span class="slide-dot" data-dot="3"></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- AUTO STORE -->
+      <div class="view" id="view-auto-store">
+        <div class="page-header">
+          <h1>Auto Store</h1>
+          <p>Configure the storage location so the macro can deposit fish automatically.</p>
+        </div>
+        <div class="slideshow-wrap" id="ss-auto-store">
+          <div class="slideshow-viewport">
+            <div class="slide visible" data-index="0">
+              <img src="https://i.postimg.cc/cHccJwWf/Item-Store.png" alt="Set up the store location" onerror="imgFallback(this,'Set Up the Store Location')" />
+              <div class="slide-step-badge">01</div>
+              <div class="slide-overlay">
+                <div class="slide-overlay-title">Set up the store location</div>
+                <div class="slide-overlay-desc">Navigate to the storage chest and configure the interaction point in the Locations tab.</div>
+              </div>
+            </div>
+            <button class="slide-arrow prev" aria-label="Previous">&#8249;</button>
+            <button class="slide-arrow next" aria-label="Next">&#8250;</button>
+          </div>
+          <div class="slide-dots">
+            <span class="slide-dot active" data-dot="0"></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- AUTO SELECT -->
+      <div class="view" id="view-auto-select">
+        <div class="page-header">
+          <h1>Auto Select</h1>
+          <p>Let the macro automatically choose the best available bait from your inventory.</p>
+        </div>
+        <div class="slideshow-wrap" id="ss-auto-select">
+          <div class="slideshow-viewport">
+            <div class="slide visible" data-index="0">
+              <img src="https://i.postimg.cc/wjscmSH2/Select-Top-Bait.png" alt="Enable Auto Select" onerror="imgFallback(this,'Enable Auto Select')" />
+              <div class="slide-step-badge">01</div>
+              <div class="slide-overlay">
+                <div class="slide-overlay-title">Enable Auto Select</div>
+                <div class="slide-overlay-desc">Toggle 'Auto Select Top Bait' in the Automation tab.</div>
+              </div>
+            </div>
+            <button class="slide-arrow prev" aria-label="Previous">&#8249;</button>
+            <button class="slide-arrow next" aria-label="Next">&#8250;</button>
+          </div>
+          <div class="slide-dots">
+            <span class="slide-dot active" data-dot="0"></span>
+          </div>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
